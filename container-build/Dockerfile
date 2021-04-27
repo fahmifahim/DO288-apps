@@ -12,6 +12,5 @@ RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 
 USER 1001
 
-#CMD run-httpd
-CMD httpd -D FOREGROUND
+CMD run-httpd
 
