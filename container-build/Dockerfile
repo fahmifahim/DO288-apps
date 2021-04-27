@@ -4,9 +4,10 @@ FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
 
 #RUN yum install -y --no-docs --disableplugin=subscription-manager httpd && yum clean all --disableplugin=subscription-manager -y && echo "Hello from INFORMATION" > /var/www/html/info.html
 #RUN yum install -y httpd && yum clean all -y && echo "Hello from INFORMATION" > /var/www/html/info.html
-RUN yum install -y --disableplugin=subscription-manager httpd && yum clean all -y --disableplugin=subscription-manager && echo "Hello from INFORMATION" > /var/www/html/info.html
+RUN echo "Hello from INFORMATION" > /var/www/html/info.html
 
-ONBUILD COPY src/ /var/www/html/
+#ONBUILD COPY src/ /var/www/html/
+COPY src/ /var/www/html/
 
 EXPOSE 8080
 
@@ -18,8 +19,8 @@ RUN chgrp -R 0 /var/log/httpd /var/run/httpd && chmod -R g=u /var/log/httpd /var
 
 RUN rm rf /run/httpd && mkdir /run/httpd
 
-#USER 1001
-USER root
+USER 1001
+#USER root
 
 CMD /usr/sbin/httpd -DFOREGROUND
 
