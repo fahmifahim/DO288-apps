@@ -2,11 +2,11 @@
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
 #FROM quay.io/redhattraining/httpd-parent
 
-USER root
+
 #RUN yum install -y --no-docs --disableplugin=subscription-manager httpd && yum clean all --disableplugin=subscription-manager -y && echo "Hello from INFORMATION" > /var/www/html/info.html
 #RUN yum install -y httpd && yum clean all -y && echo "Hello from INFORMATION" > /var/www/html/info.html
 #RUN echo "Hello from INFORMATION" > /var/www/html/info.html
-RUN yum install -y --disableplugin=subscription-manager httpd && yum clean all --disableplugin=subscription-manager && echo "Hello from INFORMATION" > /var/www/html/info.html
+RUN echo "Hello from INFORMATION" > /var/www/html/info.html
 
 #ONBUILD COPY src/ /var/www/html/
 COPY src/ /var/www/html/
@@ -17,7 +17,7 @@ LABEL io.k8s.description="A basic Apache HTTP" io.k8s.display-name="Apache HTTP 
 
 RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 
-RUN chgrp -R 0 /var/log/httpd /var/run/httpd && chmod -R g=u /var/log/httpd /var/run/httpd
+#RUN chgrp -R 0 /var/log/httpd /var/run/httpd && chmod -R g=u /var/log/httpd /var/run/httpd
 
 RUN rm rf /run/httpd && mkdir /run/httpd
 
