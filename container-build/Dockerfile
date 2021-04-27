@@ -6,7 +6,7 @@ USER root
 #RUN yum install -y --no-docs --disableplugin=subscription-manager httpd && yum clean all --disableplugin=subscription-manager -y && echo "Hello from INFORMATION" > /var/www/html/info.html
 #RUN yum install -y httpd && yum clean all -y && echo "Hello from INFORMATION" > /var/www/html/info.html
 #RUN echo "Hello from INFORMATION" > /var/www/html/info.html
-RUN yum install -y httpd && echo "Hello from INFORMATION" > /var/www/html/info.html
+RUN yum install -y --disableplugin=subscription-manager httpd && yum clean all --disableplugin=subscription-manager && echo "Hello from INFORMATION" > /var/www/html/info.html
 
 #ONBUILD COPY src/ /var/www/html/
 COPY src/ /var/www/html/
