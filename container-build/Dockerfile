@@ -11,6 +11,7 @@ LABEL io.k8s.description="A basic Apache HTTP" io.k8s.display-name="Apache HTTP 
 #RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 
 #USER 1001
+USER root
 
-CMD run-httpd
+#CMD run-httpd
 
